@@ -1,3 +1,4 @@
+package hashTable;
 
 class MyHashTable<K, V> {
     private int SIZE = 31;

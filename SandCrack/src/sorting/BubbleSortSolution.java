@@ -1,3 +1,4 @@
+package sorting;
 
 public class BubbleSortSolution {
 
