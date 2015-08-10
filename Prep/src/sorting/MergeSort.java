@@ -1,15 +1,23 @@
 package sorting;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.ListIterator;
 
 public class MergeSort {
 
     public static void main(String[] args) {
         MergeSort mergeSort = new MergeSort();
+        
+        System.out.println(mergeSort.mergeSort(Arrays.asList(5l, 4l, 3l, 2l, 1l)));
     }
     
+    /**
+     * Merge sort algo
+     * 
+     * @param input
+     * @return
+     */
     public List<Long> mergeSort(List<Long> input) {
 
         if (input.size() <= 1)
@@ -22,12 +30,19 @@ public class MergeSort {
         left = mergeSort(left);
         right = mergeSort(right);
         
-        List<Long> result = mergeSort(left, right);
+        List<Long> result = mergeTogether(left, right);
         
         return result;
     }
     
-    private List<Long> mergeSort(List<Long> left, List<Long> right) {
+    /**
+     * Put the lists together in sorted order
+     * 
+     * @param left
+     * @param right
+     * @return
+     */
+    private List<Long> mergeTogether(List<Long> left, List<Long> right) {
         if (right.isEmpty())
             return left;
         if (left.isEmpty())
@@ -35,41 +50,19 @@ public class MergeSort {
         
         List<Long> result = new ArrayList<Long>(left.size() + right.size());
         
-        ListIterator<Long> first = left.listIterator();
-        ListIterator<Long> second = right.listIterator();
+        int leftIndex = 0;
+        int rightIndex = 0;
         
-        long firstNum = first.next();
-        long secondNum = second.next();
-        
-        while (true) {
-            if (firstNum < secondNum) {
-                
-                result.add(firstNum);
-                
-                if (first.hasNext()) {
-                    firstNum = first.next();
-                }
-                else {
-                    result.add(secondNum);
-                    //add rest of right lift
-                    while (second.hasNext())
-                        result.add(second.next());
-                    
-                    break;
-                }
-            }
-            else {
-                result.add(secondNum);
-                
-                if (second.hasNext()) {
-                    secondNum = second.next();
-                } else  {
-                    result.add(firstNum);
-                    while (first.hasNext())
-                        result.add(first.next());
-                        
-                    break;
-                }
+        for(int i = 0; i < left.size() + right.size(); i++) {
+            // take from left
+            if(rightIndex >= right.size() || 
+                (leftIndex < left.size() && left.get(leftIndex) <= right.get(rightIndex))) {
+                result.add(i, left.get(leftIndex));
+                leftIndex++;
+            } else {
+                // take from right
+                result.add(i, right.get(rightIndex));
+                rightIndex++;
             }
         }
         
