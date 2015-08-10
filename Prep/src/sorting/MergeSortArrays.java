@@ -1,4 +1,4 @@
-package sandbox;
+package sorting;
 
 import java.util.Arrays;
 

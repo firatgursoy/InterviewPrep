@@ -1,56 +1,13 @@
-package sandbox;
+package sorting;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
 
-import com.google.common.primitives.Ints;
-
 public class MergeSort {
-
-    private int inversions = 0;
-    
-    public int getInversions() {
-        return inversions;
-    }
 
     public static void main(String[] args) {
         MergeSort mergeSort = new MergeSort();
-        
-        List<Long> list = new ArrayList<>(100000);
-        
-        BufferedReader br;
-        String curline;
-        try {
-            br = new BufferedReader(new FileReader("test.txt"));
-            while ((curline = br.readLine()) != null) {
-                list.add(Long.parseLong(curline));
-            }
-            br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        
-        int[] ints = Ints.toArray(list);
-        
-        long count = mergeSort.invCount(ints);
-        
-        System.out.println("inversion count: " + count);
-    }
-    
-    long invCount(int[] arr) {
-        if (arr.length < 2)
-            return 0;
-
-        int m = (arr.length + 1) / 2;
-        int left[] = Arrays.copyOfRange(arr, 0, m);
-        int right[] = Arrays.copyOfRange(arr, m, arr.length);
-
-        return invCount(left) + invCount(right) + merge(arr, left, right);
     }
     
     public List<Long> mergeSort(List<Long> input) {
@@ -103,7 +60,6 @@ public class MergeSort {
             }
             else {
                 result.add(secondNum);
-                inversions =  inversions + (left.size() - (first.nextIndex() - 1));
                 
                 if (second.hasNext()) {
                     secondNum = second.next();
@@ -119,25 +75,5 @@ public class MergeSort {
         
         return result;
     }
-
-    long merge(int[] arr, int[] left, int[] right) {
-        int i = 0, j = 0, count = 0;
-        while (i < left.length || j < right.length) {
-            if (i == left.length) {
-                arr[i+j] = right[j];
-                j++;
-            } else if (j == right.length) {
-                arr[i+j] = left[i];
-                i++;
-            } else if (left[i] <= right[j]) {
-                arr[i+j] = left[i];
-                i++;                
-            } else {
-                arr[i+j] = right[j];
-                count += left.length-i;
-                j++;
-            }
-        }
-        return count;
-    }
+    
 }

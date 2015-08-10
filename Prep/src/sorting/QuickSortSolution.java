@@ -1,4 +1,4 @@
-package sandbox;
+package sorting;
 
 import java.util.ArrayList;
 import java.util.List;

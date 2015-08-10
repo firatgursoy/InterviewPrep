@@ -1,4 +1,4 @@
-package sandbox;
+package squareroot;
 
 public class SquareRoot {
 
