@@ -34,7 +34,6 @@ public class ListBeforeAfterX {
         while(before.next != null) {
             before = before.next;
         }
-        
         before.next = after;
         
         return head;
