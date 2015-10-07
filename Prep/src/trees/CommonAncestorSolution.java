@@ -36,8 +36,8 @@ public class CommonAncestorSolution {
             return null;
         }
 
-        if (root.mLeftNode == first || root.mRightNode == second || root.mLeftNode == second
-                        || root.mRightNode == first) {
+        if (root.mLeftNode == first || root.mRightNode == second || 
+            root.mLeftNode == second || root.mRightNode == first) {
             return root;
         } else {
             Node left = commonAncestor(root.mLeftNode, first, second);
