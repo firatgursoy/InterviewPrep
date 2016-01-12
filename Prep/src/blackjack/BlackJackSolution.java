@@ -7,6 +7,7 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * enum Suit
@@ -30,35 +31,10 @@ import java.util.stream.Collectors;
  */
 
 enum Suit {
-    CLUB(0),
-    DIAMOND(1),
-    HEART(2),
-    SPADE(3);
-    
-    private int value;
-    
-    Suit(int value) {
-        this.value = value;
-    }
-    
-    int getValue() {
-        return value;
-    }
-    
-    public static Suit getSuitFromValue(int value) {
-        switch (value) {
-        case 0:
-            return Suit.CLUB;
-        case 1:
-            return Suit.DIAMOND;
-        case 2:
-            return Suit.HEART;
-        case 3: 
-            return Suit.SPADE;
-        default:
-                return null;
-        }
-    }
+    CLUB,
+    DIAMOND,
+    HEART,
+    SPADE
 }
 
 abstract class Card {
@@ -232,9 +208,9 @@ class BlackJackHand extends Hand<BlackJackCard> {
     
     public void print() {
         System.out.print("Hand " + this.getName() + ": ");
-        for (Card card : cards) {
-            card.print();
-        }
+        
+        cards.stream().forEach(x -> x.print());
+
         System.out.print(" score:" + score());
         System.out.println();
     }
@@ -294,9 +270,14 @@ class BlackJackGame {
     
     public BlackJackGame(int numPlayers) {
         hands = new BlackJackHand[numPlayers];
+        IntStream.range(0, numPlayers - 1)
+                .forEach(x -> hands[x] = new BlackJackHand(String.valueOf(x)));
+        
+        /*
         for (int i = 0; i < numPlayers; i++) {
             hands[i] = new BlackJackHand(String.valueOf(i));
         }
+        */
         dealerHand = new BlackJackHand("Dealer");
         scanner = new Scanner(System.in);
     }
@@ -323,6 +304,7 @@ class BlackJackGame {
     
     public ArrayList<Integer> getBlackJacks() {
         ArrayList<Integer> winners = new ArrayList<Integer>();
+        
         for (int i = 0; i < hands.length; i++) {
             if (hands[i].isBlackJack()) {
                 winners.add(i);

@@ -63,7 +63,6 @@ class List<T extends Comparable<T>> {
     }
     
     public void delete(T data) {
-        
         if (head != null && head.data.equals(data)) {
             deleteHead();
         }
@@ -80,7 +79,6 @@ class List<T extends Comparable<T>> {
                 current = current.next;
             }
         }
-        
     }
 
     private void deleteHead() {

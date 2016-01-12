@@ -1,9 +1,11 @@
 package poker;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 enum Suit {
     SPADE,
@@ -27,6 +29,11 @@ class Card {
 
     public Suit getSuit() {
         return suit;
+    }
+    
+    @Override
+    public String toString() {
+        return "(" + suit.toString() + "," + cardValue + ")";
     }
 }
 
@@ -55,8 +62,16 @@ class PokerHand {
         return groupBySuit.entrySet().stream().anyMatch(x -> x.getValue() == 5);
     }
     
+    /**
+     * Just get all cards, sort and see if each card are each one value apart.
+     * 
+     */
     public boolean isStraight() {
-        cards.stream().sorted((c1, c2) -> c1.getCardValue().compareTo(c2.getCardValue()));
+        List<Card> sortedItems = cards.stream()
+                                        .sorted((c1, c2) -> Integer.compare(c1.getCardValue(), c2.getCardValue()))
+                                        .collect(Collectors.toList());
+        
+        System.out.println(sortedItems);
         
         return false;
     }
@@ -71,8 +86,13 @@ public class PokerSolution {
         PokerHand hand = new PokerHand();
         hand.addToHand(new Card(Suit.HEART, 10));
         hand.addToHand(new Card(Suit.HEART, 2));
+        hand.addToHand(new Card(Suit.HEART, 8));
+        hand.addToHand(new Card(Suit.HEART, 7));
+        hand.addToHand(new Card(Suit.HEART, 6));
         
-        System.out.println(hand.isFourOfKind());
-        System.out.println(hand.isStraight());
+        //System.out.println(hand.isFourOfKind());
+        //System.out.println(hand.isStraight());
+        
+        hand.isStraight();
     }
 }
