@@ -21,23 +21,27 @@ public class CommonAncestor {
             return null;
         }
         
-        /*if (root.mLeftNode == first || root.mRightNode == second ||
-            root.mLeftNode == second || root.mRightNode == first) {
-            return root;
-        } */
+        /**
+         * If Node a or Node b is also the root, then the root itself is lowest common ancestor
+         */
         if (root == first || root == second) {
             return root;
         }
-        else {
-            Node left = commonAncestor(root.mLeftNode, first, second);
-            Node right = commonAncestor(root.mRightNode, first, second);
-            
-            if (left != null && right != null) {
-                return root;
-            } 
-            
-            return (left != null) ? left : right;
-        }
+        
+        /**
+         * If Node a and Node b lie in the left, their Lowest Common Ancestor is in the left.
+         * If Node a and Node b lie in the right,their Lowest Common Ancestor is in the right.
+         *
+         * Otherwise, root is the Lowest common ancestor.
+         */
+        Node left = commonAncestor(root.mLeftNode, first, second);
+        Node right = commonAncestor(root.mRightNode, first, second);
+        
+        if (left != null && right != null) {
+            return root;
+        } 
+        
+        return (left != null) ? left : right;
         
     }
 
