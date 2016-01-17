@@ -32,7 +32,6 @@ public class ReverseList {
             curr = next;
         }
         
-        
         return prev;
     }
 }
