@@ -17,4 +17,22 @@ public class ReverseList {
         node.next = null;
         return remaining;
     }
+    
+    public Node reverse(Node curr) {
+        Node next = null;
+        Node prev = null;
+        
+        while (curr != null) {
+            next = curr.next;
+            //reverse link
+            curr.next = prev;
+            
+            //update pointers
+            prev = curr;
+            curr = next;
+        }
+        
+        
+        return prev;
+    }
 }
