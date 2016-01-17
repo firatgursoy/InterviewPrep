@@ -1,7 +1,5 @@
 package list;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class CommonAncestor {
     private class Node
@@ -23,21 +21,22 @@ public class CommonAncestor {
             return null;
         }
         
-        if (root.mLeftNode == first || root.mRightNode == second ||
+        /*if (root.mLeftNode == first || root.mRightNode == second ||
             root.mLeftNode == second || root.mRightNode == first) {
             return root;
-        } else {
+        } */
+        if (root == first || root == second) {
+            return root;
+        }
+        else {
             Node left = commonAncestor(root.mLeftNode, first, second);
             Node right = commonAncestor(root.mRightNode, first, second);
             
             if (left != null && right != null) {
                 return root;
-            } else if(left != null && right == null) {
-                return left;
-            } else {
-                return right;
-            }
+            } 
             
+            return (left != null) ? left : right;
         }
         
     }
