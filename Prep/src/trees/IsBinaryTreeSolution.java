@@ -18,9 +18,9 @@ public class IsBinaryTreeSolution {
             return true;
         }
         
-        if (    (min != null && node.value < min) 
+        if (    min != null && node.value < min
                         ||
-                (max != null && node.value > max)
+                max != null && node.value > max
             ){
             return false;
         }

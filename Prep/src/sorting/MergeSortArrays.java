@@ -5,11 +5,7 @@ import java.util.Arrays;
 public class MergeSortArrays {
 
     public int[] mergeSort(int[] input) {
-        if (input == null) {
-            return input;
-        }
-        
-        if (input.length <= 1) {
+        if (input == null || input.length <= 1) {
             return input;
         }
         
