@@ -5,6 +5,8 @@ public class SquareRoot {
     private static final double EPISLON = 0.000000001;
 
     public double squareRoot(float n) {
+        if (n < 0) return Double.NaN;
+        
         float low = 0;
         float high = n;
         float mid = (low + high) / 2;

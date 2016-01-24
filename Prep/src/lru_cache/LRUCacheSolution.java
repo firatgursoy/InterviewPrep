@@ -5,6 +5,15 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
+/**
+ * LRU caching, you always throw out the data that was least recently used.
+ * 
+ * 
+ * @author echow23
+ *
+ * @param <K>
+ * @param <V>
+ */
 class LRUCache<K, V> {
     
     private Map<K, V> map;
@@ -27,9 +36,11 @@ class LRUCache<K, V> {
         }
         
         while(queue.size() >= size) {
+            //front of the queue is the oldest
             K oldest = queue.poll();
             
             if (oldest != null) {
+                //remove mapping for key called oldest
                 map.remove(oldest);
             }
         }

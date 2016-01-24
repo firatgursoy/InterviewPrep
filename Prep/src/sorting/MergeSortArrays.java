@@ -20,9 +20,9 @@ public class MergeSortArrays {
     
     // Returns the first half of the given array.
     private int[] leftHalf(int[] array) {
-        int size1 = array.length / 2;
-        int[] left = new int[size1];
-        for (int i = 0; i < size1; i++) {
+        int size = array.length / 2;
+        int[] left = new int[size];
+        for (int i = 0; i < size; i++) {
             left[i] = array[i];
         }
         return left;

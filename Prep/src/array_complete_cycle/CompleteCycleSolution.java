@@ -1,5 +1,6 @@
 package array_complete_cycle;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,10 +30,7 @@ public class CompleteCycleSolution {
                 set.add(nextPair);
         }
         
-        if (set.size() == input.length)
-            return true;
-        
-        return false;
+        return set.size() == input.length;
     }
     
     private static Pair<Integer, Integer> getNextPair(int[] input, Pair<Integer, Integer> pair) {
@@ -46,9 +44,12 @@ public class CompleteCycleSolution {
     public static void main(String[] args) {
         int[] input = {2, 2, 2};
         int[] input2 = {2, 2, 2, 2};
+        int[] input3 = {1, 2, 1};
         
-        System.out.println(isCompleteCycle(input2));
+        System.out.println(Arrays.toString(input2) + ": " +isCompleteCycle(input2));
         
-        System.out.println(isCompleteCycle(input));
+        System.out.println(Arrays.toString(input) + ": " +isCompleteCycle(input));
+        
+        System.out.println(Arrays.toString(input3) + ": " + isCompleteCycle(input3));
     }
 }
