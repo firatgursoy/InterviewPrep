@@ -71,13 +71,16 @@ public class RemoveDuplicates {
         
         Node<T> current = head;
         Node<T> prev = current;
-        for( ;current != null; current = current.next) {
+        while (current != null) {
             if (set.contains(current.data)) {
-                prev.next = current.next;
+                Node<T> next = current.next;
+                prev.next = next;
                 current.next = null;
+                current = next;
             } else {
                 set.add(current.data);
                 prev = current;
+                current = current.next;
             }
         }
         
@@ -88,14 +91,20 @@ public class RemoveDuplicates {
         Node<Integer> two = new Node<>(2);
         Node<Integer> twoA = new Node<>(2);
         Node<Integer> three = new Node<>(3);
+        Node<Integer> threeA = new Node<>(3);
+        Node<Integer> four = new Node<>(4);
+        Node<Integer> fourA = new Node<>(4);
         
         one.next = two;
         two.next = twoA;
         twoA.next = three;
+        three.next = threeA;
+        threeA.next = four;
+        four.next = fourA;
         
         System.out.println(one);
         
-        removeDuplicates(one);
+        removeDuplicateStorage(one);
         
         System.out.println(one);
     }

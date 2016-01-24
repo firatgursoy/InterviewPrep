@@ -39,7 +39,7 @@ public class MaxSolution {
         int sc = sign(c);
         
         int use_sa = sa ^ sb;
-        int use_sc = flip(sa ^ sb);
+        int use_sc = flip(use_sa);
         
         int k = use_sa * sa + use_sc * sc;
         int q = flip(k);
@@ -48,6 +48,8 @@ public class MaxSolution {
     }
     
     public static void main(String[] args) {
-        
+        System.out.println("max of (2, 3): " + max(2, 3));
+        System.out.println("max of (2, -3): " + max(2, -3));
+        System.out.println("max of (INT_MAX - 2, -15): " + max(Integer.MAX_VALUE - 2, -15));
     }
 }
